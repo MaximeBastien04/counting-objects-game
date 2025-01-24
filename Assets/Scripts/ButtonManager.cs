@@ -6,6 +6,15 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
+    private GameObject MuteSoundButton;
+    private GameObject PlaySoundButton;
+
+    void Start()
+    {
+        MuteSoundButton = GameObject.Find("MuteButton");
+        PlaySoundButton = GameObject.Find("SoundButton");
+        MuteSoundButton.SetActive(false);
+    }
 
     public void PlayGame()
     {
@@ -41,15 +50,19 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("EndScreen");
     }
 
-    private void MuteSound()
+    public void MuteSound()
     {
         AudioListener.volume = 0;
         Debug.Log(AudioListener.volume);
+        PlaySoundButton.SetActive(false);
+        MuteSoundButton.SetActive(true);
     }
 
-    private void AmplifySound()
+    public void AmplifySound()
     {
         AudioListener.volume = 1;
         Debug.Log(AudioListener.volume);
+        PlaySoundButton.SetActive(true);
+        MuteSoundButton.SetActive(false);
     }
 }
