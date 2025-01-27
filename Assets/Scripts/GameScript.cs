@@ -8,15 +8,15 @@ using UnityEngine.UI;
 public class GameScript : MonoBehaviour
 {
     public GameObject collidersParent;
-
     public GameObject collidersParent2;
     public GameObject conditions;
-    private float conditionAmount = 0;
 
+    private float conditionAmount = 0;
     private float currentAmount = 0;
     private float maximumAmount = 0;
     private float currentAmount2 = 0;
     private float maximumAmount2 = 0;
+
     private TextMeshProUGUI currentAmountText;
     private TextMeshProUGUI currentAmountText2;
     private string subjectName;
@@ -24,6 +24,9 @@ public class GameScript : MonoBehaviour
 
     private GameObject NextLevelButton;
 
+    [SerializeField] private AudioManager audioManager;
+
+    private bool winSoundPlayed = false; // Flag to track if win sound has been played
 
     void Start()
     {
@@ -32,7 +35,7 @@ public class GameScript : MonoBehaviour
             maximumAmount++;
             subjectName = anim.name;
         }
-        foreach (var c in conditions.transform)
+        foreach (Transform c in conditions.transform)
         {
             conditionAmount++;
         }
@@ -47,11 +50,20 @@ public class GameScript : MonoBehaviour
 
         Debug.Log("currentamount:" + currentAmount + "/" + maximumAmount);
         Debug.Log("currentamount2:" + currentAmount2 + "/" + maximumAmount2);
+
         NextLevelButton = GameObject.Find("NextLevelButton");
         NextLevelButton.SetActive(false);
+
+        if (audioManager != null)
+        {
+            Debug.Log("audiomanager found");
+        }
+        else
+        {
+            Debug.Log("audiomanager not found");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         FindAnimal();
@@ -64,11 +76,13 @@ public class GameScript : MonoBehaviour
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-            if (hit.collider.gameObject.name == subjectName && hit.collider != null)
+            if (hit.collider != null && hit.collider.gameObject.name == subjectName)
             {
                 hit.collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 currentAmountText = GameObject.Find(subjectName + "Amount").GetComponent<TextMeshProUGUI>();
+                hit.collider.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
+                audioManager.PlayFindObject();
                 currentAmount++;
                 currentAmountText.text = currentAmount + "/" + maximumAmount;
                 Debug.Log(currentAmount + "/" + maximumAmount);
@@ -82,14 +96,23 @@ public class GameScript : MonoBehaviour
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
-                if (hit.collider.gameObject.name == subjectName2 && hit.collider != null)
+                if (hit.collider != null && hit.collider.gameObject.name == subjectName2)
                 {
                     hit.collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                     currentAmountText2 = GameObject.Find(subjectName2 + "Amount").GetComponent<TextMeshProUGUI>();
+                    hit.collider.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
+                    audioManager.PlayFindObject();
                     currentAmount2++;
                     currentAmountText2.text = currentAmount2 + "/" + maximumAmount2;
                 }
+            }
+
+            if (currentAmount == maximumAmount && currentAmount2 == maximumAmount2 && !winSoundPlayed)
+            {
+                audioManager.PlayWinSound();
+                winSoundPlayed = true; // Set the flag to true
+                Debug.Log("Win sound played!");
             }
 
             if (currentAmount == maximumAmount && currentAmount2 == maximumAmount2)
@@ -99,6 +122,12 @@ public class GameScript : MonoBehaviour
         }
         else if (conditionAmount == 1)
         {
+            if (currentAmount == maximumAmount && !winSoundPlayed)
+            {
+                audioManager.PlayWinSound();
+                winSoundPlayed = true; // Set the flag to true
+                Debug.Log("Win sound played!");
+            }
 
             if (currentAmount == maximumAmount)
             {
