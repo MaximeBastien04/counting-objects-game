@@ -16,6 +16,11 @@ public class ButtonManager : MonoBehaviour
         MuteSoundButton.SetActive(false);
     }
 
+    void Update()
+    {
+        SoundButtons();
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Level1");
@@ -53,16 +58,24 @@ public class ButtonManager : MonoBehaviour
     public void MuteSound()
     {
         AudioListener.volume = 0;
-        Debug.Log(AudioListener.volume);
-        PlaySoundButton.SetActive(false);
-        MuteSoundButton.SetActive(true);
     }
 
     public void AmplifySound()
     {
         AudioListener.volume = 1;
-        Debug.Log(AudioListener.volume);
-        PlaySoundButton.SetActive(true);
-        MuteSoundButton.SetActive(false);
+    }
+
+    private void SoundButtons()
+    {
+        if(AudioListener.volume == 1)
+        {
+            PlaySoundButton.SetActive(true);
+            MuteSoundButton.SetActive(false);
+        }
+        else if (AudioListener.volume == 0)
+        {
+            PlaySoundButton.SetActive(false);
+            MuteSoundButton.SetActive(true);
+        }
     }
 }
