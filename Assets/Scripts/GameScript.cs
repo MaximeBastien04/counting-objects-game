@@ -26,7 +26,7 @@ public class GameScript : MonoBehaviour
 
     [SerializeField] private AudioManager audioManager;
 
-    private bool winSoundPlayed = false; // Flag to track if win sound has been played
+    private bool winSoundPlayed = false;
 
     void Start()
     {
@@ -48,20 +48,8 @@ public class GameScript : MonoBehaviour
             }
         }
 
-        Debug.Log("currentamount:" + currentAmount + "/" + maximumAmount);
-        Debug.Log("currentamount2:" + currentAmount2 + "/" + maximumAmount2);
-
         NextLevelButton = GameObject.Find("NextLevelButton");
         NextLevelButton.SetActive(false);
-
-        if (audioManager != null)
-        {
-            Debug.Log("audiomanager found");
-        }
-        else
-        {
-            Debug.Log("audiomanager not found");
-        }
     }
 
     void Update()
@@ -85,7 +73,6 @@ public class GameScript : MonoBehaviour
                 audioManager.PlayFindObject();
                 currentAmount++;
                 currentAmountText.text = currentAmount + "/" + maximumAmount;
-                Debug.Log(currentAmount + "/" + maximumAmount);
             }
         }
 
@@ -111,8 +98,7 @@ public class GameScript : MonoBehaviour
             if (currentAmount == maximumAmount && currentAmount2 == maximumAmount2 && !winSoundPlayed)
             {
                 audioManager.PlayWinSound();
-                winSoundPlayed = true; // Set the flag to true
-                Debug.Log("Win sound played!");
+                winSoundPlayed = true;
             }
 
             if (currentAmount == maximumAmount && currentAmount2 == maximumAmount2)
@@ -125,8 +111,7 @@ public class GameScript : MonoBehaviour
             if (currentAmount == maximumAmount && !winSoundPlayed)
             {
                 audioManager.PlayWinSound();
-                winSoundPlayed = true; // Set the flag to true
-                Debug.Log("Win sound played!");
+                winSoundPlayed = true;
             }
 
             if (currentAmount == maximumAmount)

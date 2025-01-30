@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,17 +10,25 @@ public class ButtonManager : MonoBehaviour
 {
     private GameObject MuteSoundButton;
     private GameObject PlaySoundButton;
+    private String SceneName;
 
     void Start()
     {
-        MuteSoundButton = GameObject.Find("MuteButton");
-        PlaySoundButton = GameObject.Find("SoundButton");
-        MuteSoundButton.SetActive(false);
+        SceneName = SceneManager.GetActiveScene().name;
+        if (SceneName != "StartScene" || SceneName != "StartScene")
+        {
+            MuteSoundButton = GameObject.Find("MuteButton");
+            PlaySoundButton = GameObject.Find("SoundButton");
+            MuteSoundButton.SetActive(false);
+        }
     }
 
     void Update()
     {
-        SoundButtons();
+        if (SceneName != "StartScene" || SceneName != "StartScene")
+        {
+            SoundButtons();
+        }
     }
 
     public void PlayGame()
@@ -67,7 +77,7 @@ public class ButtonManager : MonoBehaviour
 
     private void SoundButtons()
     {
-        if(AudioListener.volume == 1)
+        if (AudioListener.volume == 1)
         {
             PlaySoundButton.SetActive(true);
             MuteSoundButton.SetActive(false);
