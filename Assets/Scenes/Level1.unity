@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 843432500}
   - component: {fileID: 843432502}
   - component: {fileID: 843432501}
+  - component: {fileID: 843432503}
   m_Layer: 5
   m_Name: BigNumberBox
   m_TagString: Untagged
@@ -917,6 +918,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843432499}
   m_CullTransparentMesh: 1
+--- !u!95 &843432503
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843432499}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fdbcdc9b1c0a36b449af98671843d91c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &911513442
 GameObject:
   m_ObjectHideFlags: 0

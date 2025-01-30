@@ -15,7 +15,7 @@ public class ButtonManager : MonoBehaviour
     void Start()
     {
         SceneName = SceneManager.GetActiveScene().name;
-        if (SceneName != "StartScene" || SceneName != "StartScene")
+        if (SceneName != "StartScene" || SceneName != "EndScene")
         {
             MuteSoundButton = GameObject.Find("MuteButton");
             PlaySoundButton = GameObject.Find("SoundButton");
@@ -25,7 +25,7 @@ public class ButtonManager : MonoBehaviour
 
     void Update()
     {
-        if (SceneName != "StartScene" || SceneName != "StartScene")
+        if (SceneName != "StartScene" || SceneName != "EndScene")
         {
             SoundButtons();
         }

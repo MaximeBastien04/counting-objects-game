@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 89131651}
   - component: {fileID: 89131653}
   - component: {fileID: 89131652}
+  - component: {fileID: 89131654}
   m_Layer: 5
   m_Name: SmallNumberBox2
   m_TagString: Untagged
@@ -234,6 +235,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89131650}
   m_CullTransparentMesh: 1
+--- !u!95 &89131654
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89131650}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b21fd0c8e1300044b5ecc7cc73e59a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &136342174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,6 +1508,7 @@ GameObject:
   - component: {fileID: 617635753}
   - component: {fileID: 617635755}
   - component: {fileID: 617635754}
+  - component: {fileID: 617635756}
   m_Layer: 5
   m_Name: SmallNumberBox1
   m_TagString: Untagged
@@ -1552,6 +1575,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617635752}
   m_CullTransparentMesh: 1
+--- !u!95 &617635756
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617635752}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b21fd0c8e1300044b5ecc7cc73e59a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &640582482
 GameObject:
   m_ObjectHideFlags: 0
