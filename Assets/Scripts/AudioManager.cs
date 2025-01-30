@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip objectFind;
     public AudioClip win;
+    public AudioClip wrong;
 
 
     public void PlayFindObject() 
@@ -23,5 +24,11 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.clip = win;
         musicSource.Play();
+    }
+
+    public void WrongItem()
+    {
+        SFXSource.clip = wrong;
+        SFXSource.Play();
     }
 }

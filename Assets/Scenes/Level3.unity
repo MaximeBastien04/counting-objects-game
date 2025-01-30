@@ -2211,6 +2211,7 @@ MonoBehaviour:
   SFXSource: {fileID: 374648150}
   objectFind: {fileID: 8300000, guid: 7db78be19bf0f9440a7ebd8e41d58e46, type: 3}
   win: {fileID: 8300000, guid: 425559614a016d9489ae1525b495ccc1, type: 3}
+  wrong: {fileID: 8300000, guid: 2c1abb13154534a428712f5d8b914462, type: 3}
 --- !u!4 &1076122940
 Transform:
   m_ObjectHideFlags: 0

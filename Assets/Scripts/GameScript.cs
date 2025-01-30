@@ -74,6 +74,10 @@ public class GameScript : MonoBehaviour
                 currentAmount++;
                 currentAmountText.text = currentAmount + "/" + maximumAmount;
             }
+            else
+            {
+                audioManager.WrongItem();
+            }
         }
 
         if (conditionAmount == 2)
@@ -92,6 +96,10 @@ public class GameScript : MonoBehaviour
                     audioManager.PlayFindObject();
                     currentAmount2++;
                     currentAmountText2.text = currentAmount2 + "/" + maximumAmount2;
+                }
+                else
+                {
+                    audioManager.WrongItem();
                 }
             }
 
