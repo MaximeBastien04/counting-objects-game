@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -101,14 +100,13 @@ public class GameScript : MonoBehaviour
                     audioManager.PlayFindObject();
                     currentAmount++;
                     currentAmountText.text = currentAmount + "/" + maximumAmount;
-                    Debug.Log(hit.collider.gameObject.name);
                 }
-                else if (hit.collider == null)
+                else
                 {
                     audioManager.WrongItem();
                 }
             }
-            
+
             if (currentAmount == maximumAmount && !winSoundPlayed)
             {
                 bigBox.SetTrigger("shake");
@@ -124,7 +122,7 @@ public class GameScript : MonoBehaviour
 
         if (conditionAmount == 2)
         {
-            if (Input.GetMouseButtonDown(0) && currentAmount < maximumAmount)
+            if (Input.GetMouseButtonDown(0) && currentAmount <= maximumAmount && currentAmount2 <= maximumAmount2)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -138,20 +136,8 @@ public class GameScript : MonoBehaviour
                     audioManager.PlayFindObject();
                     currentAmount++;
                     currentAmountText.text = currentAmount + "/" + maximumAmount;
-                    Debug.Log(hit.collider.gameObject.name);
                 }
-                else if (hit.collider == null)
-                {
-                    audioManager.WrongItem();
-                }
-            }
-            if (Input.GetMouseButtonDown(0) && currentAmount2 < maximumAmount2)
-            {
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-
-                if (hit.collider != null && hit.collider.gameObject.name == subjectName2)
+                else if (hit.collider != null && hit.collider.gameObject.name == subjectName2)
                 {
                     hit.collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                     currentAmountText2 = GameObject.Find(subjectName2 + "Amount").GetComponent<TextMeshProUGUI>();
@@ -161,31 +147,10 @@ public class GameScript : MonoBehaviour
                     currentAmount2++;
                     currentAmountText2.text = currentAmount2 + "/" + maximumAmount2;
                 }
-                else if (hit.collider.gameObject.name == subjectName)
-                {
-                    Debug.Log(subjectName);
-                }
-                else if (hit.collider == null)
+                else if (hit.collider == null || hit.collider.gameObject.name != subjectName || hit.collider.gameObject.name != subjectName2)
                 {
                     audioManager.WrongItem();
-                    Debug.Log("nothing there");
                 }
-                // else if (hit.collider.gameObject.name != subjectName && hit.collider.gameObject.name != subjectName2)
-                // {
-                //     audioManager.WrongItem();
-                //     Debug.Log("nothing there");
-                // }
-            }
-
-            if (currentAmount == maximumAmount && !smallBox1Animationplayed)
-            {
-                smallBox1.SetTrigger("shake");
-                smallBox1Animationplayed = true;
-            }
-            if (currentAmount2 == maximumAmount2 && !smallBox2Animationplayed)
-            {
-                smallBox2.SetTrigger("shake");
-                smallBox2Animationplayed = true;
             }
 
             if (currentAmount == maximumAmount && currentAmount2 == maximumAmount2 && !winSoundPlayed)
@@ -197,6 +162,19 @@ public class GameScript : MonoBehaviour
             if (currentAmount == maximumAmount && currentAmount2 == maximumAmount2)
             {
                 NextLevelButton.SetActive(true);
+            }
+
+
+            // Play shake animation when condition is met
+            if (currentAmount == maximumAmount && !smallBox1Animationplayed)
+            {
+                smallBox1.SetTrigger("shake");
+                smallBox1Animationplayed = true;
+            }
+            if (currentAmount2 == maximumAmount2 && !smallBox2Animationplayed)
+            {
+                smallBox2.SetTrigger("shake");
+                smallBox2Animationplayed = true;
             }
         }
     }
